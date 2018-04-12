@@ -1,0 +1,73 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCardLabel" jhiTranslate="barkleyApp.card.home.createOrEditLabel">Create or edit a Card</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!card.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="card.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.card.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="card.type" id="field_type" >
+                <option value="CREDIT_CARD">{{'barkleyApp.CardType.CREDIT_CARD' | translate}}</option>
+                <option value="DEBT_CARD">{{'barkleyApp.CardType.DEBT_CARD' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.card.number" for="field_number">Number</label>
+            <input type="text" class="form-control" name="number" id="field_number"
+                [(ngModel)]="card.number" required maxlength="16"/>
+            <div [hidden]="!(editForm.controls.number?.dirty && editForm.controls.number?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.number?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.number?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 16 }">
+                   This field cannot be longer than 16 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.card.valid" for="field_valid">Valid</label>
+            <input type="text" class="form-control" name="valid" id="field_valid"
+                [(ngModel)]="card.valid" required maxlength="5" pattern="[0-9]{2}\#[0-9]{2}"/>
+            <div [hidden]="!(editForm.controls.valid?.dirty && editForm.controls.valid?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.valid?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.valid?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 5 }">
+                   This field cannot be longer than 5 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.valid?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Valid' }">
+                    This field should follow pattern for "Valid".
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.card.moneyAccount" for="field_moneyAccount">Money Account</label>
+            <select class="form-control" id="field_moneyAccount" name="moneyAccount" [(ngModel)]="card.moneyAccountId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="moneyAccountOption.id" *ngFor="let moneyAccountOption of moneyaccounts; trackBy: trackMoneyAccountById">{{moneyAccountOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

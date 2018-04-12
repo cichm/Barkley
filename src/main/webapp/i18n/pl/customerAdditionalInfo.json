@@ -1,0 +1,27 @@
+
+{
+    "barkleyApp": {
+        "customerAdditionalInfo" : {
+            "home": {
+                "title": "Customer Additional Infos",
+                "createLabel": "Dodaj Customer Additional Info",
+                "createOrEditLabel": "Dodaj lub edytuj: Customer Additional Info"
+            },
+            "created": "Utworzono nowy Customer Additional Info z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Customer Additional Info z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Customer Additional Info z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Customer Additional Info {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer Additional Info"
+            },
+            "birthdate": "Birthdate",
+            "street": "Street",
+            "housenum": "Housenum",
+            "postalCode": "Postal Code",
+            "city": "City",
+            "isActive": "Is Active"
+        }
+    }
+}

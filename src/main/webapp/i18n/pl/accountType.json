@@ -1,0 +1,10 @@
+{
+    "barkleyApp": {
+        "AccountType" : {
+            "null": "",
+            "SIMPLE_ACCOUNT": "SIMPLE_ACCOUNT",
+            "BUSINESS_ACCOUNT": "BUSINESS_ACCOUNT",
+            "SAVINGS_ACCOUNT": "SAVINGS_ACCOUNT"
+        }
+    }
+}

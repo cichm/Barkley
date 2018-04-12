@@ -46,6 +46,14 @@ public class CacheConfiguration {
             cm.createCache(net.usermd.mcichon.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(net.usermd.mcichon.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(net.usermd.mcichon.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.Customer.class.getName() + ".accounts", jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.CustomerAdditionalInfo.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.MoneyAccount.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.MoneyAccount.class.getName() + ".cards", jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.Card.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.TransactionRegister.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.FacilityFrom.class.getName(), jcacheConfiguration);
+            cm.createCache(net.usermd.mcichon.domain.FacilityDestination.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

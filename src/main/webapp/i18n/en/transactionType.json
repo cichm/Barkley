@@ -1,0 +1,10 @@
+{
+    "barkleyApp": {
+        "TransactionType" : {
+            "null": "",
+            "TRANSFER": "TRANSFER",
+            "ATM_CASH_GET": "ATM_CASH_GET",
+            "PHONE_CASH_TRANSFER": "PHONE_CASH_TRANSFER"
+        }
+    }
+}

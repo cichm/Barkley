@@ -1,0 +1,28 @@
+
+{
+    "barkleyApp": {
+        "moneyAccount" : {
+            "home": {
+                "title": "Money Accounts",
+                "createLabel": "Dodaj Money Account",
+                "createOrEditLabel": "Dodaj lub edytuj: Money Account"
+            },
+            "created": "Utworzono nowy Money Account z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Money Account z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Money Account z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Money Account {{ id }}?"
+            },
+            "detail": {
+                "title": "Money Account"
+            },
+            "type": "Type",
+            "number": "Number",
+            "currency": "Currency",
+            "isActive": "Is Active",
+            "saldo": "Saldo",
+            "customer": "Customer",
+            "card": "Card"
+        }
+    }
+}

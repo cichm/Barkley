@@ -1,0 +1,27 @@
+
+{
+    "barkleyApp": {
+        "customerAdditionalInfo" : {
+            "home": {
+                "title": "Customer Additional Infos",
+                "createLabel": "Create a new Customer Additional Info",
+                "createOrEditLabel": "Create or edit a Customer Additional Info"
+            },
+            "created": "A new Customer Additional Info is created with identifier {{ param }}",
+            "updated": "A Customer Additional Info is updated with identifier {{ param }}",
+            "deleted": "A Customer Additional Info is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Customer Additional Info {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer Additional Info"
+            },
+            "birthdate": "Birthdate",
+            "street": "Street",
+            "housenum": "Housenum",
+            "postalCode": "Postal Code",
+            "city": "City",
+            "isActive": "Is Active"
+        }
+    }
+}

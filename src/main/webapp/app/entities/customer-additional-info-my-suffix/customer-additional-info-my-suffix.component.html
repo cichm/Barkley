@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span jhiTranslate="barkleyApp.customerAdditionalInfo.home.title">Customer Additional Infos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-customer-additional-info-my-suffix" [routerLink]="['/', { outlets: { popup: ['customer-additional-info-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="barkleyApp.customerAdditionalInfo.home.createLabel">
+            Create new Customer Additional Info
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customerAdditionalInfos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.birthdate">Birthdate</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.street">Street</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.housenum">Housenum</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.postalCode">Postal Code</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.city">City</span></th>
+            <th><span jhiTranslate="barkleyApp.customerAdditionalInfo.isActive">Is Active</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customerAdditionalInfo of customerAdditionalInfos ;trackBy: trackId">
+                <td><a [routerLink]="['../customer-additional-info-my-suffix', customerAdditionalInfo.id ]">{{customerAdditionalInfo.id}}</a></td>
+                <td>{{customerAdditionalInfo.birthdate | date:'medium'}}</td>
+                <td>{{customerAdditionalInfo.street}}</td>
+                <td>{{customerAdditionalInfo.housenum}}</td>
+                <td>{{customerAdditionalInfo.postalCode}}</td>
+                <td>{{customerAdditionalInfo.city}}</td>
+                <td>{{customerAdditionalInfo.isActive}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer-additional-info-my-suffix', customerAdditionalInfo.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-additional-info-my-suffix/'+ customerAdditionalInfo.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-additional-info-my-suffix/'+ customerAdditionalInfo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

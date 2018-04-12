@@ -1,0 +1,40 @@
+
+<div *ngIf="card">
+    <h2><span jhiTranslate="barkleyApp.card.detail.title">Card</span> {{card.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barkleyApp.card.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'barkleyApp.CardType.' + card.type}}">{{card.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.card.number">Number</span></dt>
+        <dd>
+            <span>{{card.number}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.card.valid">Valid</span></dt>
+        <dd>
+            <span>{{card.valid}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.card.moneyAccount">Money Account</span></dt>
+        <dd>
+            <div *ngIf="card.moneyAccountId">
+                <a [routerLink]="['/money-account-my-suffix', card.moneyAccountId]">{{card.moneyAccountId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'card-my-suffix/'+ card.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

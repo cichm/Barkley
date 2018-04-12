@@ -1,0 +1,138 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCustomerLabel" jhiTranslate="barkleyApp.customer.home.createOrEditLabel">Create or edit a Customer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!customer.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="customer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.firstName" for="field_firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                [(ngModel)]="customer.firstName" required maxlength="30" pattern="[A-Z][a-z]*"/>
+            <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.firstName?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 30 }">
+                   This field cannot be longer than 30 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.firstName?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'First Name' }">
+                    This field should follow pattern for "First Name".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.lastName" for="field_lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                [(ngModel)]="customer.lastName" required maxlength="30" pattern="[A-Z][a-z]*"/>
+            <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastName?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 30 }">
+                   This field cannot be longer than 30 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lastName?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Last Name' }">
+                    This field should follow pattern for "Last Name".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.document" for="field_document">Document</label>
+            <input type="text" class="form-control" name="document" id="field_document"
+                [(ngModel)]="customer.document" required maxlength="10" pattern="[A-Z0-9]*"/>
+            <div [hidden]="!(editForm.controls.document?.dirty && editForm.controls.document?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.document?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.document?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10 }">
+                   This field cannot be longer than 10 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.document?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Document' }">
+                    This field should follow pattern for "Document".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.pesel" for="field_pesel">Pesel</label>
+            <input type="text" class="form-control" name="pesel" id="field_pesel"
+                [(ngModel)]="customer.pesel" required maxlength="30" pattern="[0-9]{11}"/>
+            <div [hidden]="!(editForm.controls.pesel?.dirty && editForm.controls.pesel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pesel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pesel?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 30 }">
+                   This field cannot be longer than 30 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.pesel?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Pesel' }">
+                    This field should follow pattern for "Pesel".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.phoneNumber" for="field_phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                [(ngModel)]="customer.phoneNumber" maxlength="12" pattern="\+[0-9]{11}"/>
+            <div [hidden]="!(editForm.controls.phoneNumber?.dirty && editForm.controls.phoneNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.phoneNumber?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 12 }">
+                   This field cannot be longer than 12 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.phoneNumber?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Phone Number' }">
+                    This field should follow pattern for "Phone Number".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="customer.email" maxlength="30" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,})*\.([a-zA-Z]{2,}){1}$"/>
+            <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.email?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 30 }">
+                   This field cannot be longer than 30 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Email' }">
+                    This field should follow pattern for "Email".
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.customer.aditionalInfo" for="field_aditionalInfo">Aditional Info</label>
+            <select class="form-control" id="field_aditionalInfo" name="aditionalInfo" [(ngModel)]="customer.aditionalInfoId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerAdditionalInfoOption.id" *ngFor="let customerAdditionalInfoOption of aditionalinfos; trackBy: trackCustomerAdditionalInfoById">{{customerAdditionalInfoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

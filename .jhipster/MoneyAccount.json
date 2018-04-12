@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "card",
+            "otherEntityName": "card",
+            "otherEntityRelationshipName": "moneyAccount"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "AccountType",
+            "fieldValues": "SIMPLE_ACCOUNT,BUSINESS_ACCOUNT,SAVINGS_ACCOUNT"
+        },
+        {
+            "fieldName": "number",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 26
+        },
+        {
+            "fieldName": "currency",
+            "fieldType": "Currency",
+            "fieldValues": "PLN,EUR,USD,CHF"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "saldo",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180411173738",
+    "entityTableName": "money_account",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

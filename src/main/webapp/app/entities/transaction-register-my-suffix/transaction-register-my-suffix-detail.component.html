@@ -1,0 +1,46 @@
+
+<div *ngIf="transactionRegister">
+    <h2><span jhiTranslate="barkleyApp.transactionRegister.detail.title">Transaction Register</span> {{transactionRegister.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barkleyApp.transactionRegister.date">Date</span></dt>
+        <dd>
+            <span>{{transactionRegister.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.transactionRegister.amount">Amount</span></dt>
+        <dd>
+            <span>{{transactionRegister.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.transactionRegister.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'barkleyApp.TransactionType.' + transactionRegister.type}}">{{transactionRegister.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.transactionRegister.from">From</span></dt>
+        <dd>
+            <div *ngIf="transactionRegister.fromId">
+                <a [routerLink]="['/facility-from-my-suffix', transactionRegister.fromId]">{{transactionRegister.fromId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.transactionRegister.destination">Destination</span></dt>
+        <dd>
+            <div *ngIf="transactionRegister.destinationId">
+                <a [routerLink]="['/facility-destination-my-suffix', transactionRegister.destinationId]">{{transactionRegister.destinationId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'transaction-register-my-suffix/'+ transactionRegister.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

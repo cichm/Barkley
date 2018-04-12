@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span jhiTranslate="barkleyApp.transactionRegister.home.title">Transaction Registers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-transaction-register-my-suffix" [routerLink]="['/', { outlets: { popup: ['transaction-register-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="barkleyApp.transactionRegister.home.createLabel">
+            Create new Transaction Register
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="transactionRegisters">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="barkleyApp.transactionRegister.date">Date</span></th>
+            <th><span jhiTranslate="barkleyApp.transactionRegister.amount">Amount</span></th>
+            <th><span jhiTranslate="barkleyApp.transactionRegister.type">Type</span></th>
+            <th><span jhiTranslate="barkleyApp.transactionRegister.from">From</span></th>
+            <th><span jhiTranslate="barkleyApp.transactionRegister.destination">Destination</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transactionRegister of transactionRegisters ;trackBy: trackId">
+                <td><a [routerLink]="['../transaction-register-my-suffix', transactionRegister.id ]">{{transactionRegister.id}}</a></td>
+                <td>{{transactionRegister.date | date:'medium'}}</td>
+                <td>{{transactionRegister.amount}}</td>
+                <td jhiTranslate="{{'barkleyApp.TransactionType.' + transactionRegister.type}}">{{transactionRegister.type}}</td>
+                <td>
+                    <div *ngIf="transactionRegister.fromId">
+                        <a [routerLink]="['../facility-from-my-suffix', transactionRegister.fromId  ]" >{{transactionRegister.fromId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="transactionRegister.destinationId">
+                        <a [routerLink]="['../facility-destination-my-suffix', transactionRegister.destinationId  ]" >{{transactionRegister.destinationId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../transaction-register-my-suffix', transactionRegister.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transaction-register-my-suffix/'+ transactionRegister.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transaction-register-my-suffix/'+ transactionRegister.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

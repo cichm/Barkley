@@ -1,0 +1,22 @@
+
+{
+    "barkleyApp": {
+        "facilityFrom" : {
+            "home": {
+                "title": "Facility Froms",
+                "createLabel": "Create a new Facility From",
+                "createOrEditLabel": "Create or edit a Facility From"
+            },
+            "created": "A new Facility From is created with identifier {{ param }}",
+            "updated": "A Facility From is updated with identifier {{ param }}",
+            "deleted": "A Facility From is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Facility From {{ id }}?"
+            },
+            "detail": {
+                "title": "Facility From"
+            },
+            "facility": "Facility"
+        }
+    }
+}

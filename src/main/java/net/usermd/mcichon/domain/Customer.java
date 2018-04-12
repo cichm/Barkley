@@ -1,74 +1,75 @@
 package net.usermd.mcichon.domain;
 
-import net.usermd.mcichon.config.Constants;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
+/**
+ * A Customer.
+ */
 @Entity
-@Table(name = "jhi_customer")
+@Table(name = "customer")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Customer extends AbstractAuditingEntity implements Serializable{
+public class Customer implements Serializable {
 
-   private static final long serialVersianCID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Size(max = 50)
-    @Column(name = "first_name", length = 50)
+    @Size(max = 30)
+    @Pattern(regexp = "[A-Z][a-z]*")
+    @Column(name = "first_name", length = 30, nullable = false)
     private String firstName;
 
     @NotNull
-    @Size(max = 50)
-    @Column(name = "last_name", length = 50)
+    @Size(max = 30)
+    @Pattern(regexp = "[A-Z][a-z]*")
+    @Column(name = "last_name", length = 30, nullable = false)
     private String lastName;
 
-
-
-    @Email
-    @Size(min = 5, max = 100)
-    @Column(length = 100, unique = true)
-    private String email;
-
     @NotNull
-    @Size(max = 9)
-    @Column(name = "document", length = 9)
+    @Size(max = 10)
+    @Pattern(regexp = "[A-Z0-9]*")
+    @Column(name = "document", length = 10, nullable = false)
     private String document;
 
     @NotNull
-    @Size(min = 11, max = 11)
-    private String PESEL;
+    @Size(max = 30)
+    @Pattern(regexp = "[0-9]{11}")
+    @Column(name = "pesel", length = 30, nullable = false)
+    private String pesel;
 
-    @DateTimeFormat
-    @Size(min=8, max=8)
-    @Column(name = "birth_date", length = 8)
-    private Date birthDate;
+    @Size(max = 12)
+    @Pattern(regexp = "\\+[0-9]{11}")
+    @Column(name = "phone_number", length = 12)
+    private String phoneNumber;
 
-    @Size(max = 50)
-    @Column(name = "address", length = 50)
-    private String address;
+    @Size(max = 30)
+    @Pattern(regexp = "^[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]{1,})*\\.([a-zA-Z]{2,}){1}$")
+    @Column(name = "email", length = 30)
+    private String email;
 
-    @Size(min = 6, max = 6)
-    @Column(name = "postal_code", length = 50)
-    private String postalCode;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CustomerAdditionalInfo aditionalInfo;
 
-    @Size(max = 50)
-    @Column(name = "city", length = 50)
-    private String city;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MoneyAccount> accounts = new HashSet<>();
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -81,6 +82,11 @@ public class Customer extends AbstractAuditingEntity implements Serializable{
         return firstName;
     }
 
+    public Customer firstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -89,95 +95,136 @@ public class Customer extends AbstractAuditingEntity implements Serializable{
         return lastName;
     }
 
+    public Customer lastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getDocument() {
         return document;
     }
 
+    public Customer document(String document) {
+        this.document = document;
+        return this;
+    }
+
     public void setDocument(String document) {
         this.document = document;
     }
 
-    public String getPESEL() {
-        return PESEL;
+    public String getPesel() {
+        return pesel;
     }
 
-    public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
+    public Customer pesel(String pesel) {
+        this.pesel = pesel;
+        return this;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public Customer phoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public Customer email(String email) {
+        this.email = email;
+        return this;
     }
 
-    public String getCity() {
-        return city;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public CustomerAdditionalInfo getAditionalInfo() {
+        return aditionalInfo;
     }
+
+    public Customer aditionalInfo(CustomerAdditionalInfo customerAdditionalInfo) {
+        this.aditionalInfo = customerAdditionalInfo;
+        return this;
+    }
+
+    public void setAditionalInfo(CustomerAdditionalInfo customerAdditionalInfo) {
+        this.aditionalInfo = customerAdditionalInfo;
+    }
+
+    public Set<MoneyAccount> getAccounts() {
+        return accounts;
+    }
+
+    public Customer accounts(Set<MoneyAccount> moneyAccounts) {
+        this.accounts = moneyAccounts;
+        return this;
+    }
+
+    public Customer addAccount(MoneyAccount moneyAccount) {
+        this.accounts.add(moneyAccount);
+        moneyAccount.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeAccount(MoneyAccount moneyAccount) {
+        this.accounts.remove(moneyAccount);
+        moneyAccount.setCustomer(null);
+        return this;
+    }
+
+    public void setAccounts(Set<MoneyAccount> moneyAccounts) {
+        this.accounts = moneyAccounts;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Customer customer = (Customer) o;
-
-        return id.equals(customer.id);
+        if (customer.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), customer.getId());
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", document='" + document + '\'' +
-            ", PESEL='" + PESEL + '\'' +
-            ", birthDate=" + birthDate +
-            ", address='" + address + '\'' +
-            ", postalCode='" + postalCode + '\'' +
-            ", city='" + city + '\'' +
-            '}';
+            "id=" + getId() +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", document='" + getDocument() + "'" +
+            ", pesel='" + getPesel() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", email='" + getEmail() + "'" +
+            "}";
     }
 }

@@ -1,0 +1,26 @@
+
+{
+    "barkleyApp": {
+        "transactionRegister" : {
+            "home": {
+                "title": "Transaction Registers",
+                "createLabel": "Create a new Transaction Register",
+                "createOrEditLabel": "Create or edit a Transaction Register"
+            },
+            "created": "A new Transaction Register is created with identifier {{ param }}",
+            "updated": "A Transaction Register is updated with identifier {{ param }}",
+            "deleted": "A Transaction Register is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Transaction Register {{ id }}?"
+            },
+            "detail": {
+                "title": "Transaction Register"
+            },
+            "date": "Date",
+            "amount": "Amount",
+            "type": "Type",
+            "from": "From",
+            "destination": "Destination"
+        }
+    }
+}

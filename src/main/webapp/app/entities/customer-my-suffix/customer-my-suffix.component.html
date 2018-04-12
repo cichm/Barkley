@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span jhiTranslate="barkleyApp.customer.home.title">Customers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-customer-my-suffix" [routerLink]="['/', { outlets: { popup: ['customer-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="barkleyApp.customer.home.createLabel">
+            Create new Customer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.firstName">First Name</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.lastName">Last Name</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.document">Document</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.pesel">Pesel</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.phoneNumber">Phone Number</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.email">Email</span></th>
+            <th><span jhiTranslate="barkleyApp.customer.aditionalInfo">Aditional Info</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customer of customers ;trackBy: trackId">
+                <td><a [routerLink]="['../customer-my-suffix', customer.id ]">{{customer.id}}</a></td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.document}}</td>
+                <td>{{customer.pesel}}</td>
+                <td>{{customer.phoneNumber}}</td>
+                <td>{{customer.email}}</td>
+                <td>
+                    <div *ngIf="customer.aditionalInfoId">
+                        <a [routerLink]="['../customer-additional-info-my-suffix', customer.aditionalInfoId  ]" >{{customer.aditionalInfoId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer-my-suffix', customer.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-my-suffix/'+ customer.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-my-suffix/'+ customer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

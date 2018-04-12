@@ -1,0 +1,48 @@
+
+<div *ngIf="moneyAccount">
+    <h2><span jhiTranslate="barkleyApp.moneyAccount.detail.title">Money Account</span> {{moneyAccount.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'barkleyApp.AccountType.' + moneyAccount.type}}">{{moneyAccount.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.number">Number</span></dt>
+        <dd>
+            <span>{{moneyAccount.number}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.currency">Currency</span></dt>
+        <dd>
+            <span jhiTranslate="{{'barkleyApp.Currency.' + moneyAccount.currency}}">{{moneyAccount.currency}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{moneyAccount.isActive}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.saldo">Saldo</span></dt>
+        <dd>
+            <span>{{moneyAccount.saldo}}</span>
+        </dd>
+        <dt><span jhiTranslate="barkleyApp.moneyAccount.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="moneyAccount.customerId">
+                <a [routerLink]="['/customer-my-suffix', moneyAccount.customerId]">{{moneyAccount.customerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'money-account-my-suffix/'+ moneyAccount.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

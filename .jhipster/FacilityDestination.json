@@ -1,0 +1,21 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "facility",
+            "otherEntityName": "moneyAccount",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "facilityDestination"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20180411173742",
+    "entityTableName": "facility_destination",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

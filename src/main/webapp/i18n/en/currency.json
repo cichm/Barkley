@@ -1,0 +1,11 @@
+{
+    "barkleyApp": {
+        "Currency" : {
+            "null": "",
+            "PLN": "PLN",
+            "EUR": "EUR",
+            "USD": "USD",
+            "CHF": "CHF"
+        }
+    }
+}

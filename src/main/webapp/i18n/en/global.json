@@ -7,6 +7,13 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "customerMySuffix": "Customer",
+                "customerAdditionalInfoMySuffix": "Customer Additional Info",
+                "moneyAccountMySuffix": "Money Account",
+                "cardMySuffix": "Card",
+                "transactionRegisterMySuffix": "Transaction Register",
+                "facilityFromMySuffix": "Facility From",
+                "facilityDestinationMySuffix": "Facility Destination",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

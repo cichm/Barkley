@@ -1,0 +1,69 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTransactionRegisterLabel" jhiTranslate="barkleyApp.transactionRegister.home.createOrEditLabel">Create or edit a Transaction Register</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!transactionRegister.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="transactionRegister.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.transactionRegister.date" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="transactionRegister.date"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.transactionRegister.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="transactionRegister.amount" required/>
+            <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.amount?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.amount?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.transactionRegister.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="transactionRegister.type" id="field_type" >
+                <option value="TRANSFER">{{'barkleyApp.TransactionType.TRANSFER' | translate}}</option>
+                <option value="ATM_CASH_GET">{{'barkleyApp.TransactionType.ATM_CASH_GET' | translate}}</option>
+                <option value="PHONE_CASH_TRANSFER">{{'barkleyApp.TransactionType.PHONE_CASH_TRANSFER' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.transactionRegister.from" for="field_from">From</label>
+            <select class="form-control" id="field_from" name="from" [(ngModel)]="transactionRegister.fromId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="facilityFromOption.id" *ngFor="let facilityFromOption of froms; trackBy: trackFacilityFromById">{{facilityFromOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barkleyApp.transactionRegister.destination" for="field_destination">Destination</label>
+            <select class="form-control" id="field_destination" name="destination" [(ngModel)]="transactionRegister.destinationId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="facilityDestinationOption.id" *ngFor="let facilityDestinationOption of destinations; trackBy: trackFacilityDestinationById">{{facilityDestinationOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

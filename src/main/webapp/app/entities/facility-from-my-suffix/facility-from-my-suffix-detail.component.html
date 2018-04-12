@@ -1,0 +1,28 @@
+
+<div *ngIf="facilityFrom">
+    <h2><span jhiTranslate="barkleyApp.facilityFrom.detail.title">Facility From</span> {{facilityFrom.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barkleyApp.facilityFrom.facility">Facility</span></dt>
+        <dd>
+            <div *ngIf="facilityFrom.facilityId">
+                <a [routerLink]="['/money-account-my-suffix', facilityFrom.facilityId]">{{facilityFrom.facilityId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'facility-from-my-suffix/'+ facilityFrom.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

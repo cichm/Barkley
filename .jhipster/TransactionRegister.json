@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "from",
+            "otherEntityName": "facilityFrom",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "transactionRegister"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "destination",
+            "otherEntityName": "facilityDestination",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "transactionRegister"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TransactionType",
+            "fieldValues": "TRANSFER,ATM_CASH_GET,PHONE_CASH_TRANSFER"
+        }
+    ],
+    "changelogDate": "20180411173740",
+    "entityTableName": "transaction_register",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

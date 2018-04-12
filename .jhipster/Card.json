@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "moneyAccount",
+            "otherEntityName": "moneyAccount",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "CardType",
+            "fieldValues": "CREDIT_CARD,DEBT_CARD"
+        },
+        {
+            "fieldName": "number",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 16
+        },
+        {
+            "fieldName": "valid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": 5,
+            "fieldValidateRulesPattern": "[0-9]{2}\\#[0-9]{2}"
+        }
+    ],
+    "changelogDate": "20180411173739",
+    "entityTableName": "card",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

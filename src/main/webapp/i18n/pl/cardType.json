@@ -1,0 +1,9 @@
+{
+    "barkleyApp": {
+        "CardType" : {
+            "null": "",
+            "CREDIT_CARD": "CREDIT_CARD",
+            "DEBT_CARD": "DEBT_CARD"
+        }
+    }
+}

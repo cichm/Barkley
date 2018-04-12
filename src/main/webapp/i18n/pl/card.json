@@ -1,0 +1,25 @@
+
+{
+    "barkleyApp": {
+        "card" : {
+            "home": {
+                "title": "Cards",
+                "createLabel": "Dodaj Card",
+                "createOrEditLabel": "Dodaj lub edytuj: Card"
+            },
+            "created": "Utworzono nowy Card z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Card z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Card z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Card {{ id }}?"
+            },
+            "detail": {
+                "title": "Card"
+            },
+            "type": "Type",
+            "number": "Number",
+            "valid": "Valid",
+            "moneyAccount": "Money Account"
+        }
+    }
+}

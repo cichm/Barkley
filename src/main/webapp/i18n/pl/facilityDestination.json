@@ -1,0 +1,22 @@
+
+{
+    "barkleyApp": {
+        "facilityDestination" : {
+            "home": {
+                "title": "Facility Destinations",
+                "createLabel": "Dodaj Facility Destination",
+                "createOrEditLabel": "Dodaj lub edytuj: Facility Destination"
+            },
+            "created": "Utworzono nowy Facility Destination z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Facility Destination z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Facility Destination z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Facility Destination {{ id }}?"
+            },
+            "detail": {
+                "title": "Facility Destination"
+            },
+            "facility": "Facility"
+        }
+    }
+}

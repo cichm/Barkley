@@ -1,0 +1,103 @@
+entity Customer{
+    firstName String required maxlength(30) pattern(/[A-Z][a-z]*/)
+    lastName String required maxlength(30) pattern(/[A-Z][a-z]*/)
+    document String required maxlength(10) pattern(/[A-Z0-9]*/)
+    pesel String required maxlength(30) pattern(/[0-9]{11}/)
+    phoneNumber String maxlength(12) pattern(/\+[0-9]{11}/)
+    email String maxlength(30) pattern(/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,})*\.([a-zA-Z]{2,}){1}$/)
+
+}
+
+entity CustomerAdditionalInfo{
+	birth_date Instant
+    street String maxlength(30) pattern(/["ul"].[" "][A-Z][a-z]/)
+    house_num String maxlength(10) pattern(/[1-9][0-9]*\#?[0-9]*/)
+    postalCode String maxlength(6) pattern(/[0-9]{2}\-[0-9]{3}/)
+    city String maxlength(30) pattern(/[A-Z][a-z]*/)
+    isActive Boolean required
+}
+
+entity MoneyAccount{
+    type AccountType
+    number String required maxlength(26)
+    currency Currency
+    isActive Boolean required
+    saldo Double required
+}
+
+enum AccountType{
+    SIMPLE_ACCOUNT,
+    BUSINESS_ACCOUNT,
+    SAVINGS_ACCOUNT
+}
+
+enum Currency{
+    PLN,
+    EUR,
+    USD,
+    CHF
+}
+
+entity Card{
+    type CardType
+    number String required maxlength(16)
+    valid String required maxlength(5) pattern(/[0-9]{2}\#[0-9]{2}/)
+}
+
+enum CardType{
+    CREDIT_CARD,
+    DEBT_CARD
+}
+
+enum TransactionType{
+    TRANSFER,
+    ATM_CASH_GET,
+    PHONE_CASH_TRANSFER
+}
+
+entity TransactionRegister{
+    date Instant
+	amount Double required
+    type TransactionType
+}
+
+entity FacilityFrom{}
+
+entity FacilityDestination{}
+
+relationship OneToOne{
+	Customer{aditionalInfo} to CustomerAdditionalInfo
+}
+
+relationship OneToOne{
+	TransactionRegister{from} to FacilityFrom
+}
+
+relationship OneToOne{
+	TransactionRegister{destination} to FacilityDestination
+}
+
+relationship OneToOne{
+	FacilityFrom{facility} to MoneyAccount
+}
+
+relationship OneToOne{
+	FacilityDestination{facility} to MoneyAccount
+}
+
+relationship OneToMany{
+	MoneyAccount{card} to Card
+}
+
+relationship OneToMany{
+	Customer{account} to MoneyAccount
+}
+
+microservice * with BankAccountWebService
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Customer
+// Set an angular suffix
+angularSuffix * with mySuffix
